@@ -1,3 +1,32 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: express-practice-pv
+spec:
+  volumeMode: Filesystem
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: "express-practice"
+  hostPath:
+    path: "/Users/tony/Desktop/app"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: express-practice-pvc
+spec:
+  storageClassName: "express-practice"
+  resources:
+    requests:
+      storage: 2Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,6 +46,13 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
+          volumeMounts:
+            - mountPath: /app/logs
+              name: log-volume
+      volumes:
+        - name: log-volume
+          persistentVolumeClaim:
+            claimName: express-practice-pvc
 
 ---
 apiVersion: v1
