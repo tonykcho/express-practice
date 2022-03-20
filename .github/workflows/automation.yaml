@@ -1,0 +1,22 @@
+name: automation
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - run: npm install
+      - run: npm test
+      - run: npm run test-ts
+
+    
