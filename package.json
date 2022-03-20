@@ -7,8 +7,7 @@
     "build": "tsc",
     "prestart": "npm run build",
     "start": "node .",
-    "test": "mocha",
-    "test-ts": "ts-mocha test/**/*.ts"
+    "test": "mocha && ts-mocha test/**/*.ts"
   },
   "author": "",
   "license": "ISC",

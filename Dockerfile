@@ -1,7 +1,7 @@
-FROM node:17-alpine3.12 AS base
+FROM node:17-alpine3.14 AS base
 WORKDIR /app
 
-FROM node:17-alpine3.12 AS build
+FROM node:17-alpine3.14 AS build
 WORKDIR /app
 COPY ./package.json ./package-lock.json ./tsconfig.json ./
 RUN npm install
