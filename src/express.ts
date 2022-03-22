@@ -2,7 +2,7 @@ import express from "express";
 import { logger } from "./logger";
 
 export module ExpressModule {
-    const app = express();
+    export const app = express();
 
     const port = 3000;
 
